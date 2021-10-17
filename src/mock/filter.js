@@ -9,6 +9,4 @@ const generateFilters = () => {
   });
 };
 
-console.log(generateFilters());
-
 export {generateFilters};
