@@ -34,7 +34,7 @@ render(taskListElement, createTaskEditTemplate(tasks[0]));
 let showingTasksCount = SHOWING_TASKS_COUNT_ON_START;
 
 tasks.slice(1, showingTasksCount)
-  .forEach((tasks) => render(taskListElement,
+  .forEach((task) => render(taskListElement,
     createTaskTemplate(task), 'beforeend'));
 
 render(boardElement, createLoadMoreButtonTemplate());
@@ -46,12 +46,12 @@ loadMoreButton.addEventListener('click', () => {
   showingTasksCount = showingTasksCount + SHOWING_TASKS_COUNT_BY_BUTTON;
 
   tasks.slice(prevTasksCount, showingTasksCount)
-     .forEach((task) => render(taskListElement,
-     createTaskTemplate(task), 'beforeend'));
+    .forEach((task) => render(taskListElement,
+      createTaskTemplate(task), 'beforeend'));
 
-     if(showingTasksCount >= tasks.length) {
-       loadMoreButton.remove();
-     }
+  if(showingTasksCount >= tasks.length) {
+    loadMoreButton.remove();
+  }
 });
 
 // test

@@ -1,5 +1,5 @@
-import {MONTH_NAMES} from "../const";
-import {formatTime} from "../utils"
+import {MONTH_NAMES} from '../const';
+import {formatTime} from '../utils';
 
 export const createTaskTemplate = (task) => {
   const {description, dueDate, color, repeatingDays, isArchive, isFavorite} = task;
@@ -7,7 +7,7 @@ export const createTaskTemplate = (task) => {
   const isExpired = dueDate instanceof Date && dueDate < Date.now();
   const isDateShowing = !!dueDate;
 
-  const date = isDateShowing ? `${dueDate.getDate()} ${MONTH_NAMES[dueDate.getMonth()]}` : ``;
+  const date = isDateShowing ? `${dueDate.getDate()} ${MONTH_NAMES[dueDate.getMonth()]}` : '';
   const time = isDateShowing ? formatTime(dueDate) : '';
 
   const repeatClass = Object.values(repeatingDays).some(Boolean) ? 'card--repeat' : '';
@@ -33,17 +33,14 @@ export const createTaskTemplate = (task) => {
                     favorites
                   </button>
                 </div>
-
                 <div class="card__color-bar">
                   <svg class="card__color-bar-wave" width="100%" height="10">
                     <use xlink:href="#wave"></use>
                   </svg>
                 </div>
-
                 <div class="card__textarea-wrap">
                   <p class="card__text">${description}</p>
                 </div>
-
                 <div class="card__settings">
                   <div class="card__details">
                     <div class="card__dates">
@@ -58,5 +55,5 @@ export const createTaskTemplate = (task) => {
                 </div>
               </div>
             </div>
-     </article>`
+     </article>`;
 };

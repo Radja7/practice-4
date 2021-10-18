@@ -2,7 +2,7 @@ const createFilterMarkup = (filter, isChecked) => {
   const {name, count} = filter;
 
   return (
-      `<input
+    `<input
           type="radio"
           id="filter__${name}"
           class="filter__input visually-hidden"
