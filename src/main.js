@@ -7,14 +7,12 @@ import {createLoadMoreButtonTemplate} from './components/load-more-button.js';
 
 import {generateFilters} from './mock/filter.js';
 import {generateTasks} from './mock/task.js';
+import {render, RenderPosition} from "./utils.js";
 
 const TASK_COUNT = 22;
 const SHOWING_TASKS_COUNT_ON_START = 8;
 const SHOWING_TASKS_COUNT_BY_BUTTON = 8;
 
-const render = (container, template, place = 'beforeend') => {
-  container.insertAdjacentHTML(place, template);
-};
 
 const siteMainElement = document.querySelector('.main');
 const siteControlElement = siteMainElement.querySelector('.main__control');
