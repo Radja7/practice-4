@@ -1,9 +1,10 @@
-import {createSiteMenuTemplate} from './components/site-menu.js';
-import {createFilterTemplate} from './components/filter.js';
-import {createBoardTemplate} from './components/board.js';
-import {createTaskTemplate} from './components/task.js';
-import {createTaskEditTemplate} from './components/task-edit.js';
-import {createLoadMoreButtonTemplate} from './components/load-more-button.js';
+import SiteMenuComponent from './components/site-menu.js';
+import FilterComponent from './components/filter.js';
+import BoardComponent from './components/board.js';
+import TaskComponent from './components/task.js';
+import TaskEditComponent from './components/task-edit.js';
+import LoadMoreButtonComponent from './components/load-more-button.js';
+import TasksComponent from './components/tasks.js';
 
 import {generateFilters} from './mock/filter.js';
 import {generateTasks} from './mock/task.js';
@@ -13,7 +14,21 @@ const TASK_COUNT = 22;
 const SHOWING_TASKS_COUNT_ON_START = 8;
 const SHOWING_TASKS_COUNT_BY_BUTTON = 8;
 
-const renderTask = () => {};
+const renderTask = (taskListElement, task) => {
+  const onEditButtonClick = () => {
+    taskListElement.replaceChild(taskEditComponent.getElement(), taskComponent.getElement());
+  };
+
+  const taskComponent = new TaskComponent(task);
+  const editButton = taskComponent.getElement().querySelector('.card__btn--edit');
+  editButton.addEventListener('click', onEditButtonClick);
+
+  const taskEditComponent = new TaskEditComponent(task);
+  const editForm = taskEditComponent.getElement().querySelector('form');
+  editForm.addEventListener('submit', onEditFormSubmit);
+
+  render(taskListElement, taskComponent.getElement(), RenderPosition.BEFOREEND);
+};
 
 const renderBoard = () => {};
 
