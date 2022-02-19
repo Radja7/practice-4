@@ -22,6 +22,6 @@ render(siteMainElement, new FilterComponent(filters), RenderPosition.BEFOREEND);
 const boardComponent = new BoardComponent();
 const boardController = new BoardController(boardComponent);
 render(siteMainElement, boardComponent, RenderPosition.BEFOREEND);
-console.log(tasks);
-//boardController.render(tasks);
+
+boardController.render(tasks);
 
