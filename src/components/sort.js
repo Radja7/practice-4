@@ -6,7 +6,6 @@ export const SortType = {
   DEFAULT: 'default',
 };
 
-
 const createSortTemplate = () => {
   return (
     `<div class="board__sort-list">
@@ -18,7 +17,7 @@ const createSortTemplate = () => {
 };
 
 export default class Sort extends AbstractComponent {
-  constructor(currentSortType) {
+  constructor() {
     super();
 
     this._currentSortType = SortType.DEFAULT;
@@ -32,7 +31,7 @@ export default class Sort extends AbstractComponent {
     return this._currentSortType;
   }
 
-  setSortChangeHandler(handler) {
+  setSortTypeChangeHandler(handler) {
     this.getElement().addEventListener('click', (evt) => {
       evt.preventDefault();
 
@@ -40,7 +39,7 @@ export default class Sort extends AbstractComponent {
         return;
       }
 
-      const sortType = evt.target.dataset.getSortType;
+      const sortType = evt.target.dataset.sortType;
 
       if(this._currentSortType === sortType) {
         return;

@@ -35,6 +35,7 @@ const renderTask = (taskListElement, task) => {
     document.addEventListener('keydown', onEscKeyDown);
   });
 
+
   taskEditComponent.setSubmitHandler((evt) => {
     evt.preventDefault();
     replaceEditToTask();
@@ -79,6 +80,7 @@ export default class BoardController {
     this._loadMoreButtonComponent = new LoadMoreButtonComponent();
   }
 
+
   render(tasks) {
     const renderLoadMoreButton = () => {
       if(showingTasksCount >= tasks.length) {
@@ -91,14 +93,19 @@ export default class BoardController {
         const prevTasksCount = showingTasksCount;
         showingTasksCount = showingTasksCount + SHOWING_TASKS_COUNT_BY_BUTTON;
 
-        tasks.slice(prevTasksCount, showingTasksCount)
-          .forEach((task) => renderTask(taskListElement, task));
+        const sortedTasks = getSortedTasks(tasks,
+          this._sortComponent.getSortType(),
+          prevTasksCount, showingTasksCount);
+
+        renderTasks(taskListElement, sortedTasks);
 
         if(showingTasksCount >= tasks.length) {
           remove(this._loadMoreButtonComponent);
         }
       });
     };
+
+
     const container = this._container.getElement();
     const isAllTasksArchived = tasks.every((task) => task.isArchive);
 
@@ -110,15 +117,14 @@ export default class BoardController {
     render(container, this._sortComponent, RenderPosition.BEFOREEND);
     render(container, this._tasksComponent, RenderPosition.BEFOREEND);
 
-    //const taskListElement = container.querySelector('.board__tasks');
     const taskListElement = this._tasksComponent.getElement();
 
     let showingTasksCount = SHOWING_TASKS_COUNT_ON_START;
 
-    renderTask(taskListElement, tasks.slice(0, showingTasksCount));
+    renderTasks(taskListElement, tasks.slice(0, showingTasksCount));
     renderLoadMoreButton();
 
-    this._sortComponent.setSortChangeHandler((sortType) => {
+    this._sortComponent.setSortTypeChangeHandler((sortType) => {
       showingTasksCount = SHOWING_TASKS_COUNT_BY_BUTTON;
 
       const sortedTasks = getSortedTasks(tasks, sortType, 0, showingTasksCount);

@@ -42,26 +42,8 @@ const getRandomDate = () => {
   return targetDate;
 };
 
-const generateDate = () => {
-  // Когда в руках молоток, любая проблема - гвоздь.
-  // Вот и для генерации случайного булевого значения
-  // можно использовать "функцию из интернета".
-  // Ноль - ложь, один - истина. Для верности приводим
-  // к булевому типу с помощью Boolean
-  const isDate = Boolean(getRandomIntegerNumber(0, 1));
-
-  if (!isDate) {
-    return null;
-  }
-
-  const maxDaysGap = 7;
-  const daysGap = getRandomIntegerNumber(-maxDaysGap, maxDaysGap);
-
-  return dayjs().add(daysGap, 'day').toDate();
-};
-
 const generateTask = () => {
-  const dueDate = generateDate();
+  const dueDate = Math.random() > 0.5 ? null : getRandomDate();
 
   return {
     description: getRandomArrayItem(DescriptionItems),
