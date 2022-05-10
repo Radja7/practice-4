@@ -119,7 +119,8 @@ export default class BoardController {
    //showingTasksCount = SHOWING_TASKS_COUNT_BY_BUTTON;
    this._showingTasksCount = SHOWING_TASKS_COUNT_ON_START;
 
-    const sortedTasks = getSortedTasks(tasks, sortType, 0, showingTasksCount);
+    const sortedTasks = getSortedTasks(this._tasks, sortType, 0, this._showingTasksCount);
+    const taskListElement = this._tasksComponent.getElement();
 
     taskListElement.innerHTML = '';
 
