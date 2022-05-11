@@ -116,7 +116,6 @@ export default class BoardController {
   }
 
   _onSortTypeChange(sortType) {
-   //showingTasksCount = SHOWING_TASKS_COUNT_BY_BUTTON;
    this._showingTasksCount = SHOWING_TASKS_COUNT_ON_START;
 
     const sortedTasks = getSortedTasks(this._tasks, sortType, 0, this._showingTasksCount);
